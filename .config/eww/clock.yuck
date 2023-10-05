@@ -1,0 +1,25 @@
+(defpoll time :interval "10s" "date '+%I:%M %p'")
+(defpoll currdate :interval "600s" "date '+%A %d/%m/%y'")
+
+(defwidget clockwidget []
+    (button :onclick "eww open clockcalendar --toggle"
+        :tooltip currdate
+        (label :text time)
+    )
+)
+
+(defwindow clockcalendar
+    :monitor 0
+    :geometry (geometry
+        :width "30%"
+        :anchor "top right"
+    )
+    :stacking "fg"
+    :exlucisve false
+    (box
+        :orientation "vertical"
+        :space-evenly false
+        (calendar)
+        (label :text currdate)
+    )
+)

@@ -1,0 +1,9 @@
+(defpoll ssh :interval "20s" "systemctl is-active sshd ||:")
+
+(defwidget remotewidget []
+    (box :orientation "horizontal"
+        :space-evenly false
+        :spacing 4
+        (label :markup { ssh == "active" ? "<span fgcolor='#ff4400'>SSH</span>" : "<s>ssh</s>" })
+    )
+)

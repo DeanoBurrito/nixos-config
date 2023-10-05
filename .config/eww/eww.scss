@@ -1,0 +1,13 @@
+$base: #ffffff88;
+$hilight0: #bc0000;
+$hilight1: #8700bc;
+
+* {
+    all: unset;
+    font-family: monospace;
+}
+
+button {
+    transition: background-color 200ms, color 200ms
+}
+

@@ -1,0 +1,14 @@
+(defvar volume_level "0")
+(defvar volume_mute true)
+
+(defwidget soundwidget []
+    (box :orientation "horizontal"
+        :space-evenly false
+        :spacing 4
+        (label :text { volume_mute ? "󰝟" :
+            volume_level < 30 ? "󰕿" :
+            volume_level < 55 ? "󰖀" : "󰕾" }
+        )
+        (label :text { volume_mute ? "󰟢" : "${volume_level}%" })
+    )
+)

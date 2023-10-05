@@ -1,0 +1,28 @@
+(defpoll brightness :interval "60s" "brightnessctl -m | cut -d ',' -f 4")
+(defpoll battery :interval "20s" "./battery.sh")
+(defvar power_hover false)
+
+(defwidget powerwidget []
+    (eventbox
+        :onhover "eww update power_hover=true"
+        :onhoverlost "eww update power_hover=false"
+        (box :orientation "horizontal"
+            :space-evenly false
+            :spacing 4
+            (revealer :reveal power_hover :transition "slideright" :duration "200ms"
+                (label :text "${battery.status}")
+            )
+            (label :markup "<span fgcolor='${battery.colour}'>${battery.icon}</span>")
+            (label :markup "<span fgcolor='${battery.colour}'>${battery.percent}</span>")
+        )
+    )
+)
+
+(defwidget brightnesswidget []
+    (box :orientation "horizontal"
+        :space-evenly false
+        :spacing 4
+        (label :text "")
+        (label :text brightness)
+    )
+)

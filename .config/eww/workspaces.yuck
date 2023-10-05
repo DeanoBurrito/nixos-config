@@ -1,0 +1,14 @@
+(defvar activespace "{}")
+(defvar spacesjson "[]")
+
+(defwidget workspaceswidget []
+    (box :orientation "horizontal"
+         :spacing 10
+         :space-evenly false
+    (for ws in spacesjson
+        (button :onclick "hyprctl dispatch workspace ${ ws.id }; ./hyprland-update.sh"
+            (label :text "${ws.id}")
+        )
+    )
+    )
+)

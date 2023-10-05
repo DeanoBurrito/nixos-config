@@ -1,0 +1,22 @@
+(defpoll cpu :interval "4s" "./cpu.sh")
+(defvar cpu_hover false)
+
+(defwidget cpuwidget []
+    (eventbox
+        :onhover "eww update cpu_hover=true"
+        :onhoverlost "eww update cpu_hover=false"
+        (box :orientation "horizontal"
+            :space-evenly false
+            :spacing 4
+            (revealer :reveal cpu_hover :transition "slideright" :duration "200ms"
+            (box :orientation "horizontal"
+                :space-evenly false
+                :spacing 4
+                (label :text "temp")
+                (label :text "${cpu.min}MHz")
+                (label :text "-")
+            ))
+            (label :text "${cpu.max}MHz")
+        )
+    )
+)
